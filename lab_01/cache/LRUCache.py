@@ -27,7 +27,7 @@ class LRUCache:
     def set(self, key: str, value: str) -> None:
         if key not in self.__map___.keys():
             if len(self.__deque__) == self.__cache_size__:
-                last = self.__deque__.pop()
+                last = self.__deque__.popleft()
                 del self.__map___[last]
         else:
             self.remove(key)
