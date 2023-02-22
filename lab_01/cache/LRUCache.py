@@ -6,7 +6,11 @@ class LRUCache:
     def __init__(self, capacity: int = 10) -> None:
         self.__deque__ = deque(maxlen=capacity)
         self.__map___ = {}
-        self.__cache_size__ = capacity
+
+        if capacity == 0:
+            raise ValueError("cache size must be greater than 0")
+        else:
+            self.__cache_size__ = capacity
 
     def get(self, key: str) -> str:
         result: string
