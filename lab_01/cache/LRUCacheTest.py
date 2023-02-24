@@ -18,12 +18,14 @@ class LRUCacheTest(unittest.TestCase):
 
     def test_should_return_new_value_when_update_existing_element(self):
         self.cache.set("2", "two")
+
         self.cache.set("2", "new two")
 
         self.assertEqual("new two", self.cache.get("2"))
 
     def test_should_return_blank_string_when_remove_existing_element(self):
         self.cache.set("1", "one")
+
         self.cache.remove("1")
 
         self.assertEqual("", self.cache.get("1"))
@@ -32,6 +34,7 @@ class LRUCacheTest(unittest.TestCase):
         self.cache.set("1", "one")
         self.cache.set("2", "two")
         self.cache.set("3", "three")
+
         self.cache.set("2", "new two")
         self.cache.set("4", "four")
         self.cache.set("5", "five")
