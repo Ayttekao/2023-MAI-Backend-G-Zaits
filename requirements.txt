@@ -8,3 +8,4 @@ sqlparse==0.4.3
 tzdata==2022.7
 virtualenv==20.19.0
 virtualenvwrapper-win==1.2.7
+waitress==2.1.2
