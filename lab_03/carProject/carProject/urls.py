@@ -19,16 +19,10 @@ from lab_03.carProject.cardealer import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-    # Cars
-    path('api/cars', views.cars, name='cars'),
-    path('api/cars/<int:car_id>', views.car_info, name='get_car_info'),
-
-    # Customers
-    path('api/customers', views.customers, name='customers'),
-    path('api/customers/<int:customer_id>', views.customer_info, name='customer_info'),
-
-    # Sales
-    path('api/sales', views.sales, name='sales'),
-    path('api/sales/<int:sale_id>', views.sale_info, name='sale_info'),
+    path('cars/', views.CarsView.as_view(), name='cars'),
+    path('cars/<int:car_id>/', views.CarInfoView.as_view(), name='car_info'),
+    path('customers/', views.CustomersView.as_view(), name='customers'),
+    path('customers/<int:customer_id>/', views.CustomerInfoView.as_view(), name='customer_info'),
+    path('sales/', views.SalesView.as_view(), name='sales'),
+    path('sales/<int:sale_id>/', views.SaleInfoView.as_view(), name='sale_info'),
 ]

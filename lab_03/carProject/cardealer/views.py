@@ -1,85 +1,92 @@
-# Create your views here.
-
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
+from django.views import View
 
 
-@csrf_exempt
-def cars(request):
-    if request.method == 'GET':
+class CarsView(View):
+    def get(self, request):
         data = {'message': 'This is a get_cars method.'}
         return JsonResponse(data)
-    elif request.method == 'POST':
-        data = {'message': 'This is a add_car method.'}
+
+    def post(self, request):
+        data = {'message': 'This is an add_car method.'}
         return JsonResponse(data)
-    else:
+
+    def http_method_not_allowed(self, request, *args, **kwargs):
         return JsonResponse({'error': 'Invalid request method'}, status=405)
 
 
-@csrf_exempt
-def car_info(request, car_id):
-    if request.method == 'GET':
+class CarInfoView(View):
+    def get(self, request, car_id):
         data = {'message': f'This is a get_car method with id {car_id}.'}
         return JsonResponse(data)
-    elif request.method == 'PUT':
-        data = {'message': f'This is a update_car method with id {car_id}.'}
+
+    def put(self, request, car_id):
+        data = {'message': f'This is an update_car method with id {car_id}.'}
         return JsonResponse(data)
-    if request.method == 'DELETE':
+
+    def delete(self, request, car_id):
         data = {'message': f'This is a delete_car method with id {car_id}.'}
         return JsonResponse(data)
-    else:
+
+    def http_method_not_allowed(self, request, *args, **kwargs):
         return JsonResponse({'error': 'Invalid request method'}, status=405)
 
 
-@csrf_exempt
-def customers(request):
-    if request.method == 'GET':
+class CustomersView(View):
+    def get(self, request):
         data = {'message': 'This is a get_customers method.'}
         return JsonResponse(data)
-    elif request.method == 'POST':
-        data = {'message': 'This is a add_customer method.'}
+
+    def post(self, request):
+        data = {'message': 'This is an add_customer method.'}
         return JsonResponse(data)
-    else:
+
+    def http_method_not_allowed(self, request, *args, **kwargs):
         return JsonResponse({'error': 'Invalid request method'}, status=405)
 
 
-@csrf_exempt
-def customer_info(request, customer_id):
-    if request.method == 'GET':
+class CustomerInfoView(View):
+    def get(self, request, customer_id):
         data = {'message': f'This is a get_customer method with id {customer_id}.'}
         return JsonResponse(data)
-    elif request.method == 'PUT':
-        data = {'message': f'This is a update_customer method with id {customer_id}.'}
+
+    def put(self, request, customer_id):
+        data = {'message': f'This is an update_customer method with id {customer_id}.'}
         return JsonResponse(data)
-    elif request.method == 'DELETE':
+
+    def delete(self, request, customer_id):
         data = {'message': f'This is a delete_customer method with id {customer_id}.'}
         return JsonResponse(data)
-    else:
+
+    def http_method_not_allowed(self, request, *args, **kwargs):
         return JsonResponse({'error': 'Invalid request method'}, status=405)
 
 
-@csrf_exempt
-def sales(request):
-    if request.method == 'GET':
+class SalesView(View):
+    def get(self, request):
         data = {'message': 'This is a get_sales method.'}
         return JsonResponse(data)
-    elif request.method == 'POST':
-        data = {'message': 'This is a add_sale method.'}
+
+    def post(self, request):
+        data = {'message': 'This is an add_sale method.'}
         return JsonResponse(data)
-    else:
+
+    def http_method_not_allowed(self, request, *args, **kwargs):
         return JsonResponse({'error': 'Invalid request method'}, status=405)
 
 
-@csrf_exempt
-def sale_info(request, sale_id):
-    if request.method == 'GET':
-        data = {'message': f'This is a get_sales method with id {sale_id}.'}
+class SaleInfoView(View):
+    def get(self, request, sale_id):
+        data = {'message': f'This is a get_sale method with id {sale_id}.'}
         return JsonResponse(data)
-    if request.method == 'PUT':
-        data = {'message': f'This is a update_sale method with id {sale_id}.'}
+
+    def put(self, request, sale_id):
+        data = {'message': f'This is an update_sale method with id {sale_id}.'}
         return JsonResponse(data)
-    if request.method == 'DELETE':
+
+    def delete(self, request, sale_id):
         data = {'message': f'This is a delete_sale method with id {sale_id}.'}
         return JsonResponse(data)
-    else:
+
+    def http_method_not_allowed(self, request, *args, **kwargs):
         return JsonResponse({'error': 'Invalid request method'}, status=405)
