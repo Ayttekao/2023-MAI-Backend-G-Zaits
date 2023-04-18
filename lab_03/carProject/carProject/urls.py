@@ -21,6 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('cars/', views.CarsView.as_view(), name='cars'),
     path('cars/<int:car_id>/', views.CarInfoView.as_view(), name='car_info'),
+    path('cars/search/', views.CarSearchView.as_view(), name='car_search'),
     path('customers/', views.CustomersView.as_view(), name='customers'),
     path('customers/<int:customer_id>/', views.CustomerInfoView.as_view(), name='customer_info'),
     path('sales/', views.SalesView.as_view(), name='sales'),

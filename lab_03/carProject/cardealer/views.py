@@ -5,6 +5,37 @@ from cardealer.models import Car, Customer, Make, Sale
 import json
 
 
+class CarSearchView(View):
+    def get(self, request):
+        make = request.GET.get('make')
+        model = request.GET.get('model')
+        if make and model:
+            cars = Car.objects.filter(make=make, model=model)
+        elif make:
+            cars = Car.objects.filter(make=make)
+        elif model:
+            cars = Car.objects.filter(model=model)
+        else:
+            cars = Car.objects.all()
+
+        results = {
+            'count': cars.count(),
+            'results': [
+                {
+                    'id': car.id,
+                    'make': car.make,
+                    'model': car.model,
+                    'year': car.year,
+                    'price': car.price
+                } for car in cars
+            ]
+        }
+        return JsonResponse(results)
+
+    def http_method_not_allowed(self, request, *args, **kwargs):
+        return JsonResponse({'error': 'Invalid request method'}, status=405)
+
+
 class CarsView(View):
     def get(self, request):
         cars = Car.objects.all()
