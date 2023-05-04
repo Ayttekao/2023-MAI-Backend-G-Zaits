@@ -19,6 +19,7 @@ from cardealer import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('healthcheck/', views.HealthCheckView.as_view(), name='healthcheck'),
     path('cars/', views.CarsView.as_view(), name='cars'),
     path('cars/<int:car_id>/', views.CarInfoView.as_view(), name='car_info'),
     path('cars/search/', views.CarSearchView.as_view(), name='car_search'),

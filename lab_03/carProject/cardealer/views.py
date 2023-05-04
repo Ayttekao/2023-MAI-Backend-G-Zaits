@@ -5,6 +5,13 @@ from cardealer.models import Car, Customer, Make, Sale
 import json
 
 
+class HealthCheckView(View):
+    def get(self, request, *args, **kwargs):
+        return JsonResponse({'status': 'ok'}, status=200)
+
+    def http_method_not_allowed(self, request, *args, **kwargs):
+        return JsonResponse({'error': 'Invalid request method'}, status=405)
+
 class CarSearchView(View):
     def get(self, request):
         make = request.GET.get('make')
