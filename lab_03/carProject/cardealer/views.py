@@ -17,23 +17,23 @@ class CarSearchView(View):
         make = request.GET.get('make')
         model = request.GET.get('model')
         if make and model:
-            cars = Car.objects.filter(make=make, model=model)
+            cars = Car.objects.filter(make__name__icontains=make, model__icontains=model)
         elif make:
-            cars = Car.objects.filter(make=make)
+            cars = Car.objects.filter(make__name__icontains=make)
         elif model:
-            cars = Car.objects.filter(model=model)
+            cars = Car.objects.filter(model__icontains=model)
         else:
-            cars = Car.objects.all()
+            cars = Car.objects.none()
 
         results = {
             'count': cars.count(),
             'results': [
                 {
                     'id': car.id,
-                    'make': car.make,
+                    'make': car.make.name,
                     'model': car.model,
                     'year': car.year,
-                    'price': car.price
+                    'price': str(car.price)
                 } for car in cars
             ]
         }
